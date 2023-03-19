@@ -150,7 +150,7 @@ if (isUserExist === undefined) {
 }
   }
 */
-  onLogin(){
+  onLogin(form: NgForm){
     const isUserExist = this.signupUsers.find(m => m.email == this.loginObj.email && m.password == this.loginObj.password);
     if(isUserExist != undefined) {
       alert('User Login Successfully' + isUserExist);
@@ -166,13 +166,19 @@ if (isUserExist === undefined) {
       // user doesn't exist, so add the new user object to the array and store it in local storage
       console.log(this.signupUsers);
       console.log(this.signupObj);
-      this.signupUsers.push(...this.signupObj);
+      this.signupUsers.push(this.signupObj);
       console.log( this.signupUsers);
       console.log(this.signupObj);
       localStorage.setItem('signUpUsers', JSON.stringify(this.signupUsers));
      // console.log(this.signupUsers);
       //console.log(form)
     //form.reset();
+    this.signupObj = {
+      userName: '',
+      email: '',
+      password: '',
+      passwordConfirm: '',
+    }
     setTimeout(() => {
       alert('User Signed Up Successfully');
     }, 10); 

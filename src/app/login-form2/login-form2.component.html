@@ -14,7 +14,7 @@
       </div>
       
       <div class="form-inner" #loginRef>
-        <form  #myLoginForm="ngForm" (ngSubmit)="onSubmit(myLoginForm)"action="#" class="login" >
+        <form  #myLoginForm="ngForm" (ngSubmit)="onLogin(myLoginForm)"action="#" class="login" >
           <pre>
           </pre>
           <div class="field">
@@ -27,7 +27,7 @@
           <div class="pass-link"><a href="#">Forgot password?</a></div>
           <div class="field btn">
             <div class="btn-layer"></div>
-            <input (click)= "onLogin()" type="submit" value="Login" [disabled]="!myLoginForm.valid">
+            <input type="submit" value="Login" [disabled]="!myLoginForm.valid">
           </div>
           <div class="signup-link">Create an account <a href="">Signup now</a></div>
         </form >
