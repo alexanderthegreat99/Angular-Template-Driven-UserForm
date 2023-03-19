@@ -1,0 +1,63 @@
+
+<div class="wrapper">
+    <div class="title-text" #titleRef >
+      <div class="title login">Login Form</div>
+      <div class="title signup">Signup Form</div>
+    </div>
+    <div class="form-container">
+      <div class="slide-controls">
+        <input (click)=" onLoginClick()"type="radio" name="slide" id="login" checked>
+        <input (click)=" onSignupClick()"type="radio" name="slide" id="signup" >
+        <label for="login" class="slide login">Login</label>
+        <label for="signup" class="slide signup">Signup</label>
+        <div class="slider-tab"></div>
+      </div>
+      
+      <div class="form-inner" #loginRef>
+        <form  #myLoginForm="ngForm" (ngSubmit)="onSubmit(myLoginForm)"action="#" class="login" >
+          <pre>
+          </pre>
+          <div class="field">
+            <input #loginemail="ngModel" type="text" placeholder="Email Address"   [(ngModel)]="loginObj.email" name="emailInput" required email>
+          </div>
+          <div *ngIf="loginemail.errors?.['email']" class="error-message">Email is invalid</div>
+          <div class="field">
+            <input type="password" placeholder="Password" required [(ngModel)]="loginObj.password"  name="passwd" >
+          </div>
+          <div class="pass-link"><a href="#">Forgot password?</a></div>
+          <div class="field btn">
+            <div class="btn-layer"></div>
+            <input (click)= "onLogin()" type="submit" value="Login" [disabled]="!myLoginForm.valid">
+          </div>
+          <div class="signup-link">Create an account <a href="">Signup now</a></div>
+        </form >
+        <form  #mySignupForm="ngForm" (ngSubmit)="onSubmit(mySignupForm)" action="#" class="signup" [appMatchPassword]="['password', 'passwordConfirm']">
+          <div class="field">
+            <input type="text" placeholder="Name" required [(ngModel)]="signupObj.userName" name="name">
+          </div>
+          <div class="field">
+            <input  #email="ngModel" type="text" placeholder="Email Address" [(ngModel)]="signupObj.email"  name="email" required email>
+          </div>
+          <div *ngIf="email.errors?.['email']" class="error-message">Email is invalid</div>
+          <div class="field">
+            <input #password="ngModel" type="password" placeholder="Password" required [(ngModel)]="signupObj.password" name="password">
+          </div>
+          <div class="field">
+            <input #confirmPassword="ngModel" type="password" placeholder="Confirm password" required [(ngModel)]="signupObj.passwordConfirm" name="passwordConfirm">
+          </div>
+          <div *ngIf="confirmPassword.errors?.['matching']" class="error-message">
+            Passwords do not match.
+          </div>
+          <!-- <div *ngIf="confirmPassword.errors['matching']">
+            Confirm Password does not match </div> -->
+          
+          <div class="field btn">
+            <div class="btn-layer"></div>
+            <input type="submit" value="Signup" [disabled]="mySignupForm.invalid">
+          </div>
+          <div class="signup-link">Already have an account? <a href="">Login</a></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
